@@ -15,6 +15,7 @@ export class AuthRoutes {
             envs.MAILER_SERVICE,
             envs.MAILER_EMAIL,
             envs.MAILER_SECRET_KEY,
+            envs.SEND_EMAIL,
         )
         const authService = new AuthService(emailService);
 
@@ -25,9 +26,6 @@ export class AuthRoutes {
         router.post('/register', authController.registerUser);
 
         router.get('/validate-email/:token', authController.validateEmail);
-
-
-
 
         return router;
 
