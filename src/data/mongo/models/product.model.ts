@@ -9,7 +9,6 @@ const productSchema = new mongoose.Schema({
     price: {
         type: Number,
         default: 0,
-        required: [true, "Price is required"],
     },
     available: {
         type: Boolean,
@@ -29,5 +28,13 @@ const productSchema = new mongoose.Schema({
         required: true,
     },
 });
+
+productSchema.set('toJSON', {
+    virtuals: true,
+    versionKey: false,
+    transform: function (doc, ret, options) {
+        delete ret._id;
+    }
+})
 
 export const ProductModel = mongoose.model("Product", productSchema);
